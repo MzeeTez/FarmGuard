@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ফার্মগার্ড</string>
+    <string name="welcome_title">ফার্মগার্ডে স্বাগতম</string>
+    <string name="language_prompt">চালিয়ে যেতে আপনার ভাষা নির্বাচন করুন।</string>
+    <string name="lang_english">English</string>
+    <string name="lang_hindi">हिंदी (Hindi)</string>
+    <string name="lang_tamil">தமிழ் (Tamil)</string>
+    <string name="lang_bengali">বাংলা (Bengali)</string>
+    <string name="continue_button">চালিয়ে যান</string>
+    <string name="main_activity_greeting">নমস্কার, কৃষক!</string>
+</resources>

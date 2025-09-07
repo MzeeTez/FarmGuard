@@ -1,79 +1,90 @@
 package com.example.farmguard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class languageselectionactivity extends AppCompatActivity {
 
     private Button continueButton;
+    private Map<Integer, String> viewIdToLangCodeMap;
+    private Map<String, Integer> langCodeToViewIdMap;
     private Map<RelativeLayout, ImageView> languageOptions;
-    private String selectedLanguage = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_languageselectionactivity);
 
-        continueButton = findViewById(R.id.continue_button);
-        languageOptions = new HashMap<>();
-
-        // Find views and map them
-        languageOptions.put(
-                findViewById(R.id.option_english),
-                findViewById(R.id.checkmark_english)
-        );
-        languageOptions.put(
-                findViewById(R.id.option_hindi),
-                findViewById(R.id.checkmark_hindi)
-        );
-        languageOptions.put(
-                findViewById(R.id.option_tamil),
-                findViewById(R.id.checkmark_tamil)
-        );
-        languageOptions.put(
-                findViewById(R.id.option_bengali),
-                findViewById(R.id.checkmark_bengali)
-        );
-
-        // Set click listeners for each language option
-        for (Map.Entry<RelativeLayout, ImageView> entry : languageOptions.entrySet()) {
-            RelativeLayout layout = entry.getKey();
-            layout.setOnClickListener(view -> handleLanguageSelection(layout));
-        }
+        initializeViews();
+        initializeLanguageMaps();
+        setupClickListeners();
+        updateUIBasedOnCurrentLocale();
 
         continueButton.setOnClickListener(view -> {
-            if (selectedLanguage != null) {
-                Toast.makeText(languageselectionactivity.this, "Language selected: " + selectedLanguage, Toast.LENGTH_SHORT).show();
-                // TODO: Add intent to go to the next activity (e.g., MainActivity)
-            }
+            // When continue is clicked, go to MainActivity
+            Intent intent = new Intent(languageselectionactivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 
-    private void handleLanguageSelection(RelativeLayout selectedLayout) {
-        // Hide all checkmarks
-        for (ImageView checkmark : languageOptions.values()) {
-            checkmark.setVisibility(View.GONE);
+    private void initializeViews() {
+        continueButton = findViewById(R.id.continue_button);
+        languageOptions = new HashMap<>();
+        languageOptions.put(findViewById(R.id.option_english), findViewById(R.id.checkmark_english));
+        languageOptions.put(findViewById(R.id.option_hindi), findViewById(R.id.checkmark_hindi));
+        languageOptions.put(findViewById(R.id.option_tamil), findViewById(R.id.checkmark_tamil));
+        languageOptions.put(findViewById(R.id.option_bengali), findViewById(R.id.checkmark_bengali));
+    }
+
+    private void initializeLanguageMaps() {
+        viewIdToLangCodeMap = new HashMap<>();
+        viewIdToLangCodeMap.put(R.id.option_english, "en");
+        viewIdToLangCodeMap.put(R.id.option_hindi, "hi");
+        viewIdToLangCodeMap.put(R.id.option_tamil, "ta");
+        viewIdToLangCodeMap.put(R.id.option_bengali, "bn");
+
+        langCodeToViewIdMap = new HashMap<>();
+        langCodeToViewIdMap.put("en", R.id.option_english);
+        langCodeToViewIdMap.put("hi", R.id.option_hindi);
+        langCodeToViewIdMap.put("ta", R.id.option_tamil);
+        langCodeToViewIdMap.put("bn", R.id.option_bengali);
+    }
+
+    private void setupClickListeners() {
+        for (RelativeLayout layout : languageOptions.keySet()) {
+            layout.setOnClickListener(view -> {
+                String langCode = viewIdToLangCodeMap.get(view.getId());
+                if (langCode != null && !Locale.getDefault().getLanguage().equals(langCode)) {
+                    LocaleHelper.setLocale(this, langCode);
+                    recreate(); // This will restart the activity and apply the language
+                }
+            });
         }
+    }
 
-        // Show the checkmark for the selected layout
-        ImageView selectedCheckmark = languageOptions.get(selectedLayout);
-        if (selectedCheckmark != null) {
-            selectedCheckmark.setVisibility(View.VISIBLE);
+    private void updateUIBasedOnCurrentLocale() {
+        // Get the current language of the app
+        String currentLangCode = Locale.getDefault().getLanguage();
+        Integer selectedViewId = langCodeToViewIdMap.get(currentLangCode);
+
+        if (selectedViewId != null) {
+            // Find the corresponding layout and checkmark
+            RelativeLayout selectedLayout = findViewById(selectedViewId);
+            ImageView selectedCheckmark = languageOptions.get(selectedLayout);
+
+            if (selectedCheckmark != null) {
+                selectedCheckmark.setVisibility(View.VISIBLE);
+                continueButton.setEnabled(true);
+            }
         }
-
-        // Get the language name from the TextView inside the selected layout
-        TextView textView = (TextView) selectedLayout.getChildAt(0);
-        selectedLanguage = textView.getText().toString();
-
-        // Enable the continue button
-        continueButton.setEnabled(true);
     }
 }

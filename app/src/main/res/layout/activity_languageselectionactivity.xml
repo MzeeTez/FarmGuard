@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B2DFDB"
+    android:background="#E0F7FA"
     android:padding="24dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="32dp"
+        android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="32dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome to FarmGuard"
+            android:text="@string/welcome_title"
             android:textColor="@android:color/black"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -25,95 +26,95 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="40dp"
-            android:text="Please select your language to continue."
+            android:text="@string/language_prompt"
             android:textColor="#546E7A"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="40dp"/>
 
         <RelativeLayout
             android:id="@+id/option_english"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginBottom="16dp"
             android:background="@drawable/rounded_white_bg"
+            android:layout_marginBottom="16dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:text="English"
+                android:text="@string/lang_english"
                 android:textColor="@android:color/black"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"/>
 
             <ImageView
                 android:id="@+id/checkmark_english"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
                 android:src="@drawable/ic_checkmark"
-                android:visibility="gone" />
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:visibility="gone"/>
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/option_hindi"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginBottom="16dp"
             android:background="@drawable/rounded_white_bg"
+            android:layout_marginBottom="16dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:text="हिंदी (Hindi)"
+                android:text="@string/lang_hindi"
                 android:textColor="@android:color/black"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"/>
 
             <ImageView
                 android:id="@+id/checkmark_hindi"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
                 android:src="@drawable/ic_checkmark"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
                 android:visibility="gone"
-                tools:visibility="visible" />
+                tools:visibility="visible"/>
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/option_tamil"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_marginBottom="16dp"
             android:background="@drawable/rounded_white_bg"
+            android:layout_marginBottom="16dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:text="தமிழ் (Tamil)"
+                android:text="@string/lang_tamil"
                 android:textColor="@android:color/black"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"/>
 
             <ImageView
                 android:id="@+id/checkmark_tamil"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
                 android:src="@drawable/ic_checkmark"
-                android:visibility="gone" />
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:visibility="gone"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -127,33 +128,33 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:text="বাংলা (Bengali)"
+                android:text="@string/lang_bengali"
                 android:textColor="@android:color/black"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"/>
 
             <ImageView
                 android:id="@+id/checkmark_bengali"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
                 android:src="@drawable/ic_checkmark"
-                android:visibility="gone" />
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:visibility="gone"/>
         </RelativeLayout>
     </LinearLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/continue_button"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/continue_button_selector"
-        android:backgroundTint="#4DB6AC"
         android:enabled="false"
-        android:text="Continue"
+        android:text="@string/continue_button"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        app:backgroundTint="@color/continue_button_tint_selector"
+        app:cornerRadius="12dp" />
 </RelativeLayout>

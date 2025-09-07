@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">FarmGuard</string>
+    <string name="welcome_title">Welcome to FarmGuard</string>
+    <string name="language_prompt">Please select your language to continue.</string>
+    <string name="lang_english">English</string>
+    <string name="lang_hindi">हिंदी (Hindi)</string>
+    <string name="lang_tamil">தமிழ் (Tamil)</string>
+    <string name="lang_bengali">বাংলা (Bengali)</string>
+    <string name="continue_button">Continue</string>
+    <string name="main_activity_greeting">Hello, Farmer!</string>
 </resources>

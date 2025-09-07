@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">பார்ம்கார்ட்</string>
+    <string name="welcome_title">பார்ம்கார்டுக்கு வரவேற்கிறோம்</string>
+    <string name="language_prompt">தொடர உங்கள் மொழியைத் தேர்ந்தெடுக்கவும்.</string>
+    <string name="lang_english">English</string>
+    <string name="lang_hindi">हिंदी (Hindi)</string>
+    <string name="lang_tamil">தமிழ் (Tamil)</string>
+    <string name="lang_bengali">বাংলা (Bengali)</string>
+    <string name="continue_button">தொடரவும்</string>
+    <string name="main_activity_greeting">வணக்கம், விவசாயி!</string>
+</resources>
