@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "192671960199",
+    "project_id": "farmguard-8d62f",
+    "storage_bucket": "farmguard-8d62f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:192671960199:android:f2984f3666f64f2074fc22",
+        "android_client_info": {
+          "package_name": "com.example.farmguard"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTEy-h-wbO4jD_kWXQjEJ-E73f367YPyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

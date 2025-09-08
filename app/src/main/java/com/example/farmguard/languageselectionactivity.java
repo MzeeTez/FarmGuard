@@ -29,8 +29,8 @@ public class languageselectionactivity extends AppCompatActivity {
         updateUIBasedOnCurrentLocale();
 
         continueButton.setOnClickListener(view -> {
-            // When continue is clicked, go to MainActivity
-            Intent intent = new Intent(languageselectionactivity.this, MainActivity.class);
+            // When continue is clicked, go to LoginActivity
+            Intent intent = new Intent(languageselectionactivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
         });

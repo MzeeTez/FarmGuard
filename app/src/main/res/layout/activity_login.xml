@@ -3,33 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:background="#E0F7FA">
 
-    <!-- Top decorative elements -->
     <LinearLayout
         android:id="@+id/top_elements"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:gravity="center_horizontal"
+        android:orientation="vertical"
         android:paddingTop="32dp">
 
         <ImageView
-            android:layout_width="85dp"
-            android:layout_height="81dp"
+            android:layout_width="154dp"
+            android:layout_height="175dp"
             android:padding="16dp"
             android:src="@drawable/farmguard_logo" />
 
 
     </LinearLayout>
 
-    <!-- White Login Card -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/top_elements"
-        android:layout_marginTop="24dp"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         app:cardCornerRadius="20dp"
         app:cardElevation="8dp">
@@ -44,84 +42,80 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Welcome Back!"
-                android:textColor="@android:color/black"
+                android:textColor="#4DB6AC"
                 android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="Login to continue managing your livestock."
                 android:textColor="#546E7A"
-                android:textSize="16sp"
-                android:layout_marginTop="4dp"/>
+                android:textSize="16sp" />
 
-            <!-- Mobile Number -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mobile Number"
+                android:layout_marginTop="24dp"
+                android:text="Email"
                 android:textColor="#37474F"
-                android:textSize="14sp"
-                android:layout_marginTop="24dp"/>
+                android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/mobile_number_edit_text"
+                android:id="@+id/email_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="Enter your mobile number"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/edit_text_background"
+                android:hint="Enter your email"
+                android:inputType="textEmailAddress"
                 android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:inputType="phone"
-                android:layout_marginTop="8dp"/>
+                android:paddingEnd="16dp" />
 
-            <!-- Password -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="Password"
                 android:textColor="#37474F"
-                android:textSize="14sp"
-                android:layout_marginTop="16dp"/>
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/password_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="Enter your password"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/edit_text_background"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
+                android:hint="Enter your password"
                 android:inputType="textPassword"
-                android:layout_marginTop="8dp"/>
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp" />
 
-            <!-- Login Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/login_button"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:layout_marginTop="24dp"
                 android:text="Login"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
-                app:backgroundTint="#4CAF50"
-                app:cornerRadius="12dp"
-                android:layout_marginTop="24dp"/>
+                app:backgroundTint="#4DB6AC"
+                app:cornerRadius="12dp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Register Now Link -->
     <TextView
         android:id="@+id/register_now_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New to our platform? Register Now"
-        android:textColor="#4CAF50"
-        android:textSize="16sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp"/>
+        android:layout_marginBottom="32dp"
+        android:text="New to our platform? Register Now"
+        android:textColor="#4DB6AC"
+        android:textSize="16sp" />
 
 </RelativeLayout>
