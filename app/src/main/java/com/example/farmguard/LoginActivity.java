@@ -1,6 +1,7 @@
 package com.example.farmguard;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -9,12 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -23,9 +21,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-// Import the generated BuildConfig class to access your keys
-import com.example.farmguard.BuildConfig;
-
 public class LoginActivity extends AppCompatActivity {
 
     private EditText emailEditText;
@@ -33,10 +28,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
     private TextView registerNowText;
 
-    // Securely get the keys from BuildConfig
     private final String SUPABASE_URL = BuildConfig.SUPABASE_URL;
     private final String SUPABASE_ANON_KEY = BuildConfig.SUPABASE_ANON_KEY;
-
     private final OkHttpClient client = new OkHttpClient();
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
 
@@ -58,43 +51,34 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                 return;
             }
-
-            // Disable the button to prevent multiple clicks
             loginButton.setEnabled(false);
             performLogin(email, password);
         });
 
         registerNowText.setOnClickListener(v -> {
-            // Start the SignUpActivity when the text is clicked
             Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
             startActivity(intent);
         });
     }
 
     private void performLogin(String email, String password) {
-        // Construct the API endpoint URL for email/password login
         String url = SUPABASE_URL + "/auth/v1/token?grant_type=password";
-
-        // Create the JSON request body
         MediaType JSON = MediaType.get("application/json; charset=utf-8");
         String jsonBody = "{\"email\":\"" + email + "\",\"password\":\"" + password + "\"}";
         RequestBody body = RequestBody.create(jsonBody, JSON);
 
-        // Build the HTTP request
         Request request = new Request.Builder()
                 .url(url)
                 .addHeader("apikey", SUPABASE_ANON_KEY)
                 .post(body)
                 .build();
 
-        // Execute the request asynchronously on a background thread
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                // Use a Handler to post UI updates back to the main thread
                 mainHandler.post(() -> {
                     Toast.makeText(LoginActivity.this, "Login Failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                    loginButton.setEnabled(true); // Re-enable the button on failure
+                    loginButton.setEnabled(true);
                 });
             }
 
@@ -104,25 +88,35 @@ public class LoginActivity extends AppCompatActivity {
 
                 mainHandler.post(() -> {
                     if (response.isSuccessful()) {
-                        Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        // Try to parse a more specific error message from the response
-                        String errorMessage = "Login Failed";
                         try {
+                            // On successful login, get the user's email AND access token
                             JSONObject jsonObject = new JSONObject(responseBody);
-                            errorMessage = jsonObject.optString("error_description", "Invalid credentials");
+                            String accessToken = jsonObject.getString("access_token"); // Get the token
+                            JSONObject userObject = jsonObject.getJSONObject("user");
+                            String userEmail = userObject.getString("email");
+
+                            // Save BOTH the email and the access token
+                            SharedPreferences sharedPreferences = getSharedPreferences("FarmGuardPrefs", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("USER_EMAIL", userEmail);
+                            editor.putString("ACCESS_TOKEN", accessToken); // Save the token
+                            editor.apply();
+
+                            Toast.makeText(LoginActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                            startActivity(intent);
+                            finish();
+
                         } catch (JSONException e) {
-                            // Could not parse the error, use a generic message
+                            Toast.makeText(LoginActivity.this, "Failed to parse login response.", Toast.LENGTH_LONG).show();
+                            loginButton.setEnabled(true);
                         }
-                        Toast.makeText(LoginActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Login Failed: Invalid credentials", Toast.LENGTH_LONG).show();
+                        loginButton.setEnabled(true);
                     }
-                    loginButton.setEnabled(true); // Re-enable the button after the request finishes
                 });
             }
         });
     }
 }
-

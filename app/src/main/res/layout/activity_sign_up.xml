@@ -27,12 +27,14 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#FFFFFFFF"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#FFFFFFFF"
                     android:orientation="vertical"
                     android:outlineAmbientShadowColor="#E0F7FA"
                     android:outlineSpotShadowColor="#E0F7FA"
@@ -72,7 +74,8 @@
                         android:hint="Enter your full name"
                         android:inputType="textPersonName"
                         android:paddingStart="16dp"
-                        android:paddingEnd="16dp" />
+                        android:paddingEnd="16dp"
+                        android:textColor="@color/black" />
 
                     <!-- Phone Number -->
                     <TextView
@@ -92,7 +95,8 @@
                         android:hint="Enter your phone number"
                         android:inputType="phone"
                         android:paddingStart="16dp"
-                        android:paddingEnd="16dp" />
+                        android:paddingEnd="16dp"
+                        android:textColor="@color/black" />
 
                     <!-- Email -->
                     <TextView
@@ -112,7 +116,8 @@
                         android:hint="Enter your email"
                         android:inputType="textEmailAddress"
                         android:paddingStart="16dp"
-                        android:paddingEnd="16dp" />
+                        android:paddingEnd="16dp"
+                        android:textColor="@color/black" />
 
                     <!-- Password -->
                     <TextView
@@ -132,7 +137,8 @@
                         android:hint="Enter your password"
                         android:inputType="textPassword"
                         android:paddingStart="16dp"
-                        android:paddingEnd="16dp" />
+                        android:paddingEnd="16dp"
+                        android:textColor="@color/black" />
 
                     <!-- Role Selection -->
                     <TextView
@@ -156,7 +162,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Farmer"
-                            android:textColorLink="#4DB6AC" />
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/radio_button_selector" />
 
                         <RadioButton
                             android:id="@+id/radio_vet"
@@ -164,7 +171,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Vet"
-                            android:textColorLink="#4DB6AC" />
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/radio_button_selector" />
 
                         <RadioButton
                             android:id="@+id/radio_admin"
@@ -172,7 +180,8 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Admin"
-                            android:textColorLink="#4DB6AC" />
+                            android:textColor="@color/black"
+                            android:buttonTint="@color/radio_button_selector" />
                     </RadioGroup>
 
                     <!-- Sign Up Button -->
